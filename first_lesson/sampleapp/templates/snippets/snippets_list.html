@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Snippets:Lists</title>
-    </head>
-    <body>
-        <h1>Welocmeto the </h1>
-        <h2>Snippets list page</h2>
+{% extends 'snippets/base.html' %}
 
-        {% for name in name_key %}
-            <h3>{{ name }}</h3>
-        {% empty %}
-         <h4>No elements found!!</h4>
-        {% endfor %}
+{% block title %} Snippets Title {% endblock %}
 
+{% block content %}
+<h1>Welocmeto the </h1>
+<h2>Snippets list page</h2>
+
+{% for name in name_key %}
+    <h3>{{ name|upper }}</h3>
+{% empty %}
+ <h4>No elements found!!</h4>
+{% endfor %}
+
+{% if is_expired %}
         <a href="{% url 'snippets:details' id=1 %}">Click me</a>
-    </body>
-</html>
+{% else %}
+    <h1>Not expired </h1>
+{% endif %}
+
+{% endblock content %}
